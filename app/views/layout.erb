@@ -9,11 +9,19 @@
   <!-- <script type="js/jquery-1.11.1.min.js"></script> -->
   <script src="js/app.js"></script>
 
-  <title>Simple Landing Page</title>
+  <title>Know Your Values</title>
 </head>
 
   <div class="wrapper">
     <body>
+      <header>
+        <h1>Know Your Values</h1>
+        <% if current_user %>
+          <%= erb :'user/_logedin' %>
+        <% else %>
+          <%= erb :'user/_logedout' %>
+        <% end %>
+      </header>
       <%= yield %>
     </body>
   </div>

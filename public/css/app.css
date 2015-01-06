@@ -3,3 +3,57 @@
   height: 100%;
   position: absolute;
 }
+.container {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  text-align: center;
+}
+.userInfoCont{
+  width: 30%;
+  position: relative;
+  float: right;
+}
+
+#logout{
+  /*display: none;*/
+}
+
+header{
+  background-color: white;
+  margin: 10px;
+  height: 110px;
+  border-bottom: 2px solid #B0C4DE;
+}
+
+h1{
+  color: #39ab8c;
+  position: relative;
+  float: left;
+}
+
+h2{
+  margin: 20px;
+  color: #1c6551;
+}
+
+#board{
+  margin-left: 37.5%;
+}
+
+table, input{
+  margin: 20px;
+}
+table, th, td {
+
+  border: 3px solid #338acc;
+}
+
+
+td{
+  height: 70px;
+  width: 70px;
+  font-family: "Coming Soon", "Comic Sans MS", "Comic Sans MS", sans-serif;
+  font-size: 3em;
+  color: #1e5783;
+}
