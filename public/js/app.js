@@ -21,6 +21,18 @@ $(document).ready(function() {
   $('#friends').on('submit', '.unfriend', friendsEditAjaxCall);
   $('#friends').on('submit', '.add', friendsEditAjaxCall);
 
+  $('#friends').on('submit', '#search', function(event){
+    event.preventDefault();
+    $target = $(event.target);
+    $.ajax({
+      type: $target.attr('method'),
+      url: $target.attr('action'),
+      data: $target.serialize()
+    }).done(function(response){
+      $('#friends').children('ul').replaceWith(response)
+    });
+  });
+
   function friendsAjaxCall(event){
     event.preventDefault();
     $target = $(event.target);
