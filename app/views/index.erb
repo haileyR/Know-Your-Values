@@ -1,29 +1,36 @@
 <div class="container">
+  <% if current_user %>
+    <div id="friends">
+      <h2>Friends</h2>
+      <button id='friendslistButton' action='/friends' type="submit">All Friends</button>  <button id='friendrequestButton' action='/friendrequests' type="submit">Friend Request</button>
 
-  <div id="friends">
-    <h2>Friends</h2>
-    <button id='friendslistButton' action='/friends' type="submit">All Friends</button>  <button id='friendrequestButton' action='/friendrequests' type="submit">Friend Request</button>
+      <form id='search' action='/searchfriends' method='GET'>
+        <input type='text' name='email' placeholder='saech by email'>
+        <button type="submit" >Search</button>
+      </form>
+      <ul id='friendlist'><ul>
+    </div>
 
-    <form id='search' action='/searchfriends' method='GET'>
-      <input type='text' name='email' placeholder='saech by email'>
-      <button type="submit" >Search</button>
-    </form>
-    <ul id='friendlist'><ul>
-  </div>
+    <div id='profile'>
+      <div id="bio">
+        <h2>Your Bio</h2>
+        <p contentEditable=true> <%= current_user.bio %> </p>
+        <form id='bioEdit' action='/profile' method='POST'>
+          <input type="hidden" name="_method" value="PUT">
+          <button type="submit" >Save Change</button>
+        </form>
+      </div>
+      <div id="values">
+        <h2>Your values</h2>
+        <p>
+          <% valueIDs = Uservalue.where(user_id: current_user.id).map{ |us|us.value_id } %>
+          <%= valueIDs.map { |vID| Value.find(vID).word }.join(", ") %>
+        </p>
+      </div>
+    </div>
+  <% else %>
 
-<div id='profile'>
-  <div id="bio">
-    <h2>Your Bio</h2>
-    <p> <%= current_user.bio %> </p>
-    <form class='bioEditCall' action='/profile' method='POST'>
-      <input type="hidden" name="_method" value="PUT">
-      <button type="submit" >Edit Profile</button>
-    </form>
-  </div>
-  <div id="values">
-    <h2>Your values</h2>
-  </div>
-</div>
+  <% end %>
 
 
 </div>
