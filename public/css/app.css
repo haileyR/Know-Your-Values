@@ -15,10 +15,6 @@
   float: right;
 }
 
-#logout{
-  /*display: none;*/
-}
-
 header{
   background-color: white;
   margin: 10px;
@@ -27,9 +23,12 @@ header{
 }
 
 h1{
-  color: #39ab8c;
+  font-family: 'Lobster', cursive;
+  color: #B0C4DE;
   position: relative;
   float: left;
+  font-size: 3em;
+  margin: 20px;
 }
 
 h2{
@@ -37,23 +36,36 @@ h2{
   color: #1c6551;
 }
 
-#board{
-  margin-left: 37.5%;
-}
-
-table, input{
-  margin: 20px;
-}
-table, th, td {
-
-  border: 3px solid #338acc;
+h4{
+  font-family: 'Abel', sans-serif;
+  font-size: 1.5em;
 }
 
 
-td{
-  height: 70px;
-  width: 70px;
-  font-family: "Coming Soon", "Comic Sans MS", "Comic Sans MS", sans-serif;
-  font-size: 3em;
-  color: #1e5783;
+input, textarea {
+  line-height: 1em;
+  font-size: 1em;
+  font-family: 'Abel', sans-serif;
+  border: 3px solid #B0C4DE;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+button{
+  background: transparent;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  border: 1.5px solid #B0C4DE;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  font-family: 'Abel', sans-serif;
+}
+
+select{
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  border: 1px solid #B0C4DE;
+  background: transparent;
 }
