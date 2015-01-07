@@ -61,6 +61,21 @@ $(document).ready(function() {
 
 
 
+  $('#bio').on('submit', '#bioEdit', function(event){
+    event.preventDefault();
+    $target = $(event.target);
+    $target.children('button').text('Saving...');
+    $.ajax({
+      type: 'PUT',
+      url: $target.attr('action'),
+      data: {user_id: parseInt($('#userID').val()), newbio: $target.siblings('p').text()}
+    }).done(function(response){
+      $target.children('button').text('Saved');
+    });
+  });
+
+
+
 });
 
 
