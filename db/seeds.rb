@@ -5,8 +5,24 @@ values = ["bundance", "Acceptance", "Accessibility", "Accomplishment", "Accounta
 values.each {|value| Value.create(word: value.downcase)}
 
 User.create(first_name: "Hailey", last_name: "Ryu", email: "a@a.com", password: "a", bio: Faker::Lorem.paragraph)
+User.create(first_name: "Pearl", last_name: "Shin", email: "ps@a.com", password: "a", bio: Faker::Lorem.paragraph)
+User.create(first_name: "Jon", last_name: "Cho", email: "jc@a.com", password: "a", bio: Faker::Lorem.paragraph)
+User.create(first_name: "Dionne", last_name: "Stanfield", email: "ds@a.com", password: "a", bio: Faker::Lorem.paragraph)
 
 10.times { User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "a", bio: Faker::Lorem.paragraph) }
 
 
 177.times { Friendship.find_or_create_by(user_id: rand(1..10), friend_id: rand(1..10)) }
+
+
+77.times {
+  u_id = rand(1..10)
+  v_id = rand(1..values.length)
+  us = Uservalue.find_by(user_id: u_id, value_id: v_id)
+  if us
+    new_count = us.count+1
+    us.update(count: new_count)
+  else
+    Uservalue.create(user_id: u_id, value_id: v_id, count: 0)
+  end
+}
