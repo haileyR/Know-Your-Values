@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  userEmail = null;
   $('header').on('submit', '#login', logInOutAjaxCall);
   $('header').on('click', '#logout', logInOutAjaxCall);
   $('header').on('click', '#registerNow', logInOutAjaxCall);

@@ -19,16 +19,28 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
 }
-
-.container #values{
+.container #profile{
   width: 48%;
   position: relative;
   float: right;
+}
+
+.container #values{
   text-align: center;
   border: 3px solid #B0C4DE;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
 }
+
+.container #bio{
+  text-align: center;
+  border: 3px solid #B0C4DE;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+
 
 .userInfoCont{
   width: 30%;
@@ -134,3 +146,4 @@ ul#friendlist a {
 }
 ul#friendlist a:hover {
 }
+
