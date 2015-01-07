@@ -1,8 +1,8 @@
 $(document).ready(function() {
-  $('header').on('submit', '#login', logInOutAjaxCall);
-  $('header').on('click', '#logout', logInOutAjaxCall);
+  // $('header').on('submit', '#login', logInOutAjaxCall);
   $('header').on('click', '#registerNow', logInOutAjaxCall);
   $('header').on('submit', '#register', logInOutAjaxCall);
+
 
   function logInOutAjaxCall(event){
     event.preventDefault();
@@ -53,7 +53,6 @@ $(document).ready(function() {
       url: $target.attr('action'),
       data: {user_id: parseInt($('#userID').val()), friend_id: parseInt($target.children('#friendID').val())}
     }).done(function(response){
-      console.log(response);
       $('#friends').children('ul').replaceWith(response)
     });
   };

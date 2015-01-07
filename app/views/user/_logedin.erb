@@ -1,5 +1,10 @@
 <div class='userInfoCont'>
   <h4 id='userMsg'>Welcome, <%= current_user.first_name %>!</h4>
-  <button id='logout' action='/logout' type="submit">Log Out</button>
+  <form id='logout' action='/logout' method='GET' >
+    <button type="submit">Log Out</button>
+  </form>
+  <form action='/' method='GET' >
+    <button type="submit">Home</button>
+  </form>
   <input id='userID' type="hidden" value=<%= current_user.id %>>
 </div>
