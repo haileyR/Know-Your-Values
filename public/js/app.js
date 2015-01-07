@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  userEmail = null;
   $('header').on('submit', '#login', logInOutAjaxCall);
   $('header').on('click', '#logout', logInOutAjaxCall);
   $('header').on('click', '#registerNow', logInOutAjaxCall);
@@ -17,9 +17,37 @@ $(document).ready(function() {
     });
   };
 
-  $( "#progressbar" ).progressbar({
-    value: 37
-  });
+  $('#friends').on('click', '#friendslistButton', friendsAjaxCall);
+  $('#friends').on('click', '#friendrequestButton', friendsAjaxCall);
+  $('#friends').on('submit', '.unfriend', friendsEditAjaxCall);
+  $('#friends').on('submit', '.add', friendsEditAjaxCall);
+
+  function friendsAjaxCall(event){
+    event.preventDefault();
+    $target = $(event.target);
+    $.ajax({
+      type: $target.attr('method'),
+      url: $target.attr('action'),
+      data: {user_id: parseInt($('#userID').val()), friend_id: parseInt($target.children('#friendID').val())}
+    }).done(function(response){
+      $('#friends').children('ul').replaceWith(response)
+    });
+  };
+
+  function friendsEditAjaxCall(event){
+    event.preventDefault();
+    $target = $(event.target);
+    $.ajax({
+      type: $target.children('input[name="_method"]').val(),
+      url: $target.attr('action'),
+      data: {user_id: parseInt($('#userID').val()), friend_id: parseInt($target.children('#friendID').val())}
+    }).done(function(response){
+      console.log(response);
+      $('#friends').children('ul').replaceWith(response)
+    });
+  };
+
+
 
 
 });

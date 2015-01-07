@@ -9,4 +9,4 @@ User.create(first_name: "Hailey", last_name: "Ryu", email: "a@a.com", password: 
 10.times { User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "a", bio: Faker::Lorem.paragraph) }
 
 
-77.times { Friendship.create(user_id: rand(1..10), friend_id: rand(1..10)) }
+177.times { Friendship.find_or_create_by(user_id: rand(1..10), friend_id: rand(1..10)) }

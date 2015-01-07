@@ -4,11 +4,32 @@
   position: absolute;
 }
 .container {
-  width: 50%;
+  width: 90%;
   height: 100%;
-  position: relative;
   text-align: center;
+  margin-left: 5%;
 }
+
+.container #friends{
+  width: 48%;
+  position: relative;
+  float: left;
+  text-align: center;
+  border: 3px solid #B0C4DE;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+.container #values{
+  width: 48%;
+  position: relative;
+  float: right;
+  text-align: center;
+  border: 3px solid #B0C4DE;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
 .userInfoCont{
   width: 30%;
   position: relative;
@@ -32,8 +53,10 @@ h1{
 }
 
 h2{
+  font-family: 'Lobster', cursive;
   margin: 20px;
   color: #1c6551;
+  font-size: 2em;
 }
 
 h4{
@@ -60,6 +83,18 @@ button{
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   font-family: 'Abel', sans-serif;
+  margin-bottom: 10px;
+}
+
+.unfriend button, .add button{
+  background: transparent;
+  font-weight: bold;
+  font-size: 0.7em;
+  text-align: center;
+  border: 1px solid #B0C4DE;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  font-family: 'Abel', sans-serif;
 }
 
 select{
@@ -68,4 +103,34 @@ select{
   font-size: 1em;
   border: 1px solid #B0C4DE;
   background: transparent;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ececec;
+  text-decoration: underline;
+}
+
+ul#friendlist li {
+  position: relative;
+  margin: 10px auto;
+  font-family: 'Abel', sans-serif;
+}
+
+
+ul#friendlist li h3 {
+  position: absolute;
+  bottom: -18px;
+  left: 17px;
+  font-size: 2em;
+}
+ul#friendlist a {
+  font-size: 1.5em;
+  color: #ccc;
+}
+ul#friendlist a:hover {
 }
