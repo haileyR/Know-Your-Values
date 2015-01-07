@@ -29,7 +29,8 @@ $(document).ready(function() {
       url: $target.attr('action'),
       data: $target.serialize()
     }).done(function(response){
-      $('#friends').children('ul').replaceWith(response)
+      $('#friends').children('ul').replaceWith(response);
+      $target.children('input').val("");
     });
   });
 
