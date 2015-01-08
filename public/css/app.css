@@ -85,10 +85,17 @@ h2{
   font-size: 2em;
 }
 
+h3{
+  font-family: 'Abel', sans-serif;
+  font-size: 1em;
+}
+
+
+
 #value_words{
   font-family: 'Abel', sans-serif;
   font-size: 1.5em;
-  color: #314D5C
+  margin: 20px;
 }
 
 #value_words a {
@@ -97,6 +104,26 @@ h2{
 }
 #value_words a:hover {
   color: #825741;
+  text-decoration: none;
+}
+#value_words a:visited {
+  color: #2D4957;
+  text-decoration: none;
+}
+
+
+#more_value_words{
+  font-family: 'Abel', sans-serif;
+  font-size: 1.5em;
+  margin: 20px;
+}
+
+#more_value_words a {
+  color: #6B3E87;
+  text-decoration: none;
+}
+#more_value_words a:hover {
+  color: #913499;
   text-decoration: none;
 }
 
