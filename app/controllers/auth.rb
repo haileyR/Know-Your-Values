@@ -1,5 +1,6 @@
 get '/' do
-  erb :index
+  yourvalues = current_user ? Uservalue.values_of_user(current_user.id) : nil
+  erb :'index', locals: {yourvalues: yourvalues}
 end
 
 post '/login' do
