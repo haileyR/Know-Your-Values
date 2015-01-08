@@ -77,11 +77,11 @@ $(document).ready(function() {
 
   $('#possiblevalues').on('click', 'a', function(event){
     event.preventDefault();
-
+    console.log(location.pathname+'/addvalue');
     $target = $(event.target)
     $.ajax({
       type: 'post',
-      url: '/addvalue',
+      url: location.pathname+'/addvalue',
       data: {friend_id: parseInt($('#userID').val()), value_id: parseInt($target.attr('value'))}
     }).done(function(response){
       $target.closest('#possiblevalues').siblings('div').children('p').replaceWith(response);
@@ -94,7 +94,7 @@ $(document).ready(function() {
     $target = $(event.target)
     $.ajax({
       type: 'post',
-      url: '/addvalue',
+      url: location.pathname+'/addvalue',
       data: $target.serialize()
     }).done(function(response){
       $target.siblings('#addedvalues').children('p').replaceWith(response);
@@ -107,7 +107,7 @@ $(document).ready(function() {
     $target = $(event.target)
     $.ajax({
       type: 'GET',
-      url: '/values'
+      url: location.pathname+'/values'
     }).done(function(response){
       $target.siblings('#possiblevalues').children('p').replaceWith(response);
     });

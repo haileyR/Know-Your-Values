@@ -8,7 +8,7 @@ get '/friend/:id', auth: :user do
   ship = Friendship.find_by(user_id: current_user.id, friend_id: params[:id])
   if ship && ship.status
     friend = User.find(params[:id])
-    valueIDs = Uservalue.where(user_id: current_user.id).map{ |us|us.value_id }
+    valueIDs = Uservalue.where(user_id: params[:id]).map{ |us|us.value_id }
     moreValues = Value.all.shuffle[0..50]
     erb :'/values/friendvalues', locals: {friend: friend, valueIDs: valueIDs, moreValues: moreValues}
   else
