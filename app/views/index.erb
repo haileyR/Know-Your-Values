@@ -22,15 +22,9 @@
       </div>
       <div id="values">
         <h2>Your values</h2>
-        <p>
-          <% valueIDs = Uservalue.where(user_id: current_user.id).map{ |us|us.value_id } %>
-          <%= valueIDs.map { |vID| Value.find(vID).word }.join(", ") %>
-        </p>
+        <p><%= yourvalues.map {|v|v.word}.join(", ") %></p>
       </div>
     </div>
   <% else %>
-
   <% end %>
-
-
 </div>

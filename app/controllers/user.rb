@@ -10,7 +10,8 @@ get '/friend/:id', auth: :user do
     friend = User.find(params[:id])
     valueIDs = Uservalue.where(user_id: params[:id]).map{ |us|us.value_id }
     moreValues = Value.all.shuffle[0..50]
-    erb :'/values/friendvalues', locals: {friend: friend, valueIDs: valueIDs, moreValues: moreValues}
+    values = valueIDs.map { |vID| Value.find(vID) }
+    erb :'/values/friendvalues', locals: {friend: friend, values: values, moreValues: moreValues}
   else
     redirect :'/'
   end
@@ -47,11 +48,8 @@ end
 
 delete '/friends', auth: :user do
   user = User.find(params[:user_id])
-  my_friendship = Friendship.find_by(user_id: user.id, friend_id: params[:friend_id])
-  fri_friendship = Friendship.find_by(user_id: params[:friend_id], friend_id: user.id)
-  my_friendship.destroy
-  fri_friendship.destroy
-
+  my_friendship = Friendship.find_by(user_id: user.id, friend_id: params[:friend_id]).destroy
+  fri_friendship = Friendship.find_by(user_id: params[:friend_id], friend_id: user.id).destroy
   friendships = Friendship.where(user_id: user.id, status: true)
   friends = friendships.map{|friendship| User.find(friendship.friend_id)}
   erb :'user/_friendslist', locals: {friends: friends, button: "unfriend"}, layout: false

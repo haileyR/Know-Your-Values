@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  // $('header').on('submit', '#login', logInOutAjaxCall);
   $('header').on('click', '#registerNow', logInOutAjaxCall);
   $('header').on('submit', '#register', logInOutAjaxCall);
 

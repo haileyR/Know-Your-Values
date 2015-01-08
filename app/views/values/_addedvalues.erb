@@ -1,6 +1,6 @@
 <p id="value_words">
-  <% valueIDs.map do |vID| %>
-    <a href="/friend/:id/addvalue" value=<%= vID %>><%= Value.find(vID).word %>, </a>
+  <% values.each do |value| %>
+    <a href="/friend/:id/addvalue" value=<%= value.id %>><%= value.word %>, </a>
   <% end %>
 
 </p>

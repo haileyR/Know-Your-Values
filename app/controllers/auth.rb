@@ -6,7 +6,9 @@ post '/login' do
   user = User.find_by(email: params[:user][:email])
   if user && user.authenticate(params[:user][:password])
     session[:user_id] = user.id
-    redirect :'/'
+    valueIDs = Uservalue.where(user_id: current_user.id).map{ |us|us.value_id }
+    yourvalues = valueIDs.map { |vID| Value.find(vID) }
+    redirect :'/', locals: {yourvalues: yourvalues}
   else
     session[:error] = "Invalid Login Information"
     erb :'user/_logedout'

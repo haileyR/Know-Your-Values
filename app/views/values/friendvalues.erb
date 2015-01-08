@@ -2,7 +2,7 @@
   <div id='addedvalues'>
     <h2> <%= friend.first_name %>'s values </h2>
     <h3><%= friend.bio %></h3>
-    <%= erb :'values/_addedvalues', locals: {valueIDs: valueIDs} %>
+    <%= erb :'values/_addedvalues', locals: {values: values} %>
 
   </div>
 
@@ -11,18 +11,14 @@
     <%= erb :'values/_possiblevalues', locals: {moreValues: moreValues}%>
   </div>
 
+  <form id='morevalue_form' action='/friend/:id/values' method='GET' >
+    <button type="submit">More Values</button>
+  </form>
 
-<form id='morevalue_form' action='/friend/:id/values' method='GET' >
-  <button type="submit">More Values</button>
-</form>
-
-<form id='addvalue_form' action='/friend/:id/addvalue' method='POST'>
-  <input type='hidden' name='friend_id' value='<%= friend.id %>'>
-  <input type='text' name='word' placeholder='value'>
-  <button type="submit" >  add</button>
-</form>
-
-
-
+  <form id='addvalue_form' action='/friend/:id/addvalue' method='POST'>
+    <input type='hidden' name='friend_id' value='<%= friend.id %>'>
+    <input type='text' name='word' placeholder='value'>
+    <button type="submit" >  add</button>
+  </form>
 
 </div>
