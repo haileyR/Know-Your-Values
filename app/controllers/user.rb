@@ -8,9 +8,8 @@ get '/friend/:id', auth: :user do
   ship = Friendship.find_by(user_id: current_user.id, friend_id: params[:id])
   if ship && ship.status
     friend = User.find(params[:id])
-    valueIDs = Uservalue.where(user_id: params[:id]).map{ |us|us.value_id }
     moreValues = Value.all.shuffle[0..50]
-    values = valueIDs.map { |vID| Value.find(vID) }
+    values = Uservalue.values_of_user(params[:id])
     erb :'/values/friendvalues', locals: {friend: friend, values: values, moreValues: moreValues}
   else
     redirect :'/'

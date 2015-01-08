@@ -6,8 +6,7 @@ post '/login' do
   user = User.find_by(email: params[:user][:email])
   if user && user.authenticate(params[:user][:password])
     session[:user_id] = user.id
-    valueIDs = Uservalue.where(user_id: current_user.id).map{ |us|us.value_id }
-    yourvalues = valueIDs.map { |vID| Value.find(vID) }
+    yourvalues = Uservalue.values_of_user(current_user.id)
     redirect :'/', locals: {yourvalues: yourvalues}
   else
     session[:error] = "Invalid Login Information"

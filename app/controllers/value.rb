@@ -11,7 +11,6 @@ post '/friend/:id/addvalue', auth: :user do
     newValue = Value.find_or_create_by(word: params[:word].downcase)
     Uservalue.create(user_id: params[:id], value_id: newValue.id)
   end
-  valueIDs = Uservalue.where(user_id: params[:id]).map{ |us| us.value_id }
-  values = valueIDs.map { |vID| Value.find(vID) }
+  values = Uservalue.values_of_user(params[:id])
   erb :'values/_addedvalues', locals: {values: values}, layout: false
 end
