@@ -1,0 +1,15 @@
+<ul id='friendlist'>
+  <% friends.each do |friend| %>
+    <% if friend.id != current_user.id %>
+      <li>
+        <a href="/friend/<%= friend.id %>"><%= friend.first_name %> <%= friend.last_name %></a>
+        <form class='<%= button %>' action='/friends' method='POST'>
+          <input type="hidden" name="_method" value="<%= button=="add" ? "PUT" : "DELETE" %>">
+          <input id='friendID' type="hidden" value=<%= friend.id %>>
+          <button type="submit" ><%= button %></button>
+        </form>
+
+      </li>
+    <% end %>
+  <% end %>
+</ul>

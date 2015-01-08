@@ -1,0 +1,6 @@
+<p id="more_value_words">
+  <% moreValues.map do |v| %>
+    <a href="/addvalue" value=<%= v.id %>><%= v.word %>, </a>
+  <% end %>
+
+</p>

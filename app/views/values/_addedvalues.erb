@@ -1,0 +1,8 @@
+<p id="value_words">
+  <% valueIDs.map do |vID| %>
+    <a href="/addvalue" value=<%= vID %>><%= Value.find(vID).word %>, </a>
+  <% end %>
+
+</p>
+
+
