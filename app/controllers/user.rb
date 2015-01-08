@@ -16,8 +16,7 @@ get '/friend/:id', auth: :user do
 end
 
 get '/friends', auth: :user do
-  friendships = Friendship.where(user_id: current_user.id, status: true)
-  friends = friendships.map{|friendship| User.find(friendship.friend_id)}
+  friends = Friendship.friends(current_user.id)
   erb :'user/_friendslist', locals: {friends: friends, button: "unfriend"}, layout: false
 end
 
@@ -27,23 +26,21 @@ get '/searchfriends', auth: :user do
 end
 
 get '/friendrequests', auth: :user do
-  friendships = Friendship.where(friend_id: current_user.id, status: nil)
-  friends = friendships.map{|friendship| User.find(friendship.user_id)}
+  friends = Friendship.friend_requests(current_user.id)
   erb :'user/_friendslist', locals: {friends: friends, button: "add"}, layout: false
 end
 
 put '/friends', auth: :user do
   Friendship.create(user_id: current_user.id, friend_id: params[:friend_id])
-
-  friendships = Friendship.where(friend_id: current_user.id, status: nil)
-  friends = friendships.map{|friendship| User.find(friendship.user_id)}
+  friends = []
   erb :'user/_friendslist', locals: {friends: friends, button: "add"}, layout: false
 end
 
 delete '/friends', auth: :user do
   my_friendship = Friendship.find_by(user_id: current_user.id, friend_id: params[:friend_id]).destroy
   fri_friendship = Friendship.find_by(user_id: params[:friend_id], friend_id: current_user.id).destroy
-  friendships = Friendship.where(user_id: current_user.id, status: true)
-  friends = friendships.map{|friendship| User.find(friendship.friend_id)}
+
+  friends = Friendship.friends(current_user.id)
+
   erb :'user/_friendslist', locals: {friends: friends, button: "unfriend"}, layout: false
 end

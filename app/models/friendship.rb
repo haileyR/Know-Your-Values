@@ -10,4 +10,14 @@ class Friendship < ActiveRecord::Base
       self.status = true
     end
   end
+
+  def self.friends(id)
+    friendships = Friendship.where(user_id: id, status: true)
+    friendships.map{|friendship| User.find(friendship.friend_id)}
+  end
+
+  def self.friend_requests(id)
+    friendships = Friendship.where(friend_id: id, status: nil)
+    friends = friendships.map{|friendship| User.find(friendship.user_id)}
+  end
 end
