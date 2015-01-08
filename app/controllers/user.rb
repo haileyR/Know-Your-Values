@@ -1,6 +1,5 @@
 put '/profile', auth: :user do
-  user = User.find(params[:user_id])
-  user.update(bio: params[:newbio])
+  current_user.update(bio: params[:newbio])
 end
 
 
@@ -17,9 +16,7 @@ get '/friend/:id', auth: :user do
 end
 
 get '/friends', auth: :user do
-  user = User.find(params[:user_id])
-
-  friendships = Friendship.where(user_id: user.id, status: true)
+  friendships = Friendship.where(user_id: current_user.id, status: true)
   friends = friendships.map{|friendship| User.find(friendship.friend_id)}
   erb :'user/_friendslist', locals: {friends: friends, button: "unfriend"}, layout: false
 end
@@ -30,26 +27,23 @@ get '/searchfriends', auth: :user do
 end
 
 get '/friendrequests', auth: :user do
-  user = User.find(params[:user_id])
-  friendships = Friendship.where(friend_id: user.id, status: nil)
+  friendships = Friendship.where(friend_id: current_user.id, status: nil)
   friends = friendships.map{|friendship| User.find(friendship.user_id)}
   erb :'user/_friendslist', locals: {friends: friends, button: "add"}, layout: false
 end
 
 put '/friends', auth: :user do
-  user = User.find(params[:user_id])
-  Friendship.create(user_id: user.id, friend_id: params[:friend_id])
+  Friendship.create(user_id: current_user.id, friend_id: params[:friend_id])
 
-  friendships = Friendship.where(friend_id: user.id, status: nil)
+  friendships = Friendship.where(friend_id: current_user.id, status: nil)
   friends = friendships.map{|friendship| User.find(friendship.user_id)}
   erb :'user/_friendslist', locals: {friends: friends, button: "add"}, layout: false
 end
 
 delete '/friends', auth: :user do
-  user = User.find(params[:user_id])
-  my_friendship = Friendship.find_by(user_id: user.id, friend_id: params[:friend_id]).destroy
-  fri_friendship = Friendship.find_by(user_id: params[:friend_id], friend_id: user.id).destroy
-  friendships = Friendship.where(user_id: user.id, status: true)
+  my_friendship = Friendship.find_by(user_id: current_user.id, friend_id: params[:friend_id]).destroy
+  fri_friendship = Friendship.find_by(user_id: params[:friend_id], friend_id: current_user.id).destroy
+  friendships = Friendship.where(user_id: current_user.id, status: true)
   friends = friendships.map{|friendship| User.find(friendship.friend_id)}
   erb :'user/_friendslist', locals: {friends: friends, button: "unfriend"}, layout: false
 end
