@@ -75,6 +75,45 @@ $(document).ready(function() {
   });
 
 
+  $('#possiblevalues').on('click', 'a', function(event){
+    event.preventDefault();
+
+    $target = $(event.target)
+    $.ajax({
+      type: 'post',
+      url: '/addvalue',
+      data: {friend_id: parseInt($('#userID').val()), value_id: parseInt($target.attr('value'))}
+    }).done(function(response){
+      $target.closest('#possiblevalues').siblings('div').children('p').replaceWith(response);
+    });
+  });
+
+
+  $('#addvalue_form').on('submit', function(event){
+    event.preventDefault();
+    $target = $(event.target)
+    $.ajax({
+      type: 'post',
+      url: '/addvalue',
+      data: $target.serialize()
+    }).done(function(response){
+      $target.siblings('#addedvalues').children('p').replaceWith(response);
+      $target.children('input[name=\'word\']').val("");
+    });
+  });
+
+  $('#morevalue_form').on('submit', function(event){
+    event.preventDefault();
+    $target = $(event.target)
+    $.ajax({
+      type: 'GET',
+      url: '/values'
+    }).done(function(response){
+      $target.siblings('#possiblevalues').children('p').replaceWith(response);
+    });
+  });
+
+
 
 });
 
