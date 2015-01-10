@@ -11,7 +11,8 @@ get '/friend/:id', auth: :user do
     values = Uservalue.values_of_user(params[:id])
     erb :'/values/friendvalues', locals: {friend: friend, values: values, moreValues: moreValues}
   else
-    redirect :'/'
+    friend = User.find(params[:id])
+    erb :'/values/friendvalues', locals: {friend: friend, values: [], moreValues: []}
   end
 end
 

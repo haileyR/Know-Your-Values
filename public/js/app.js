@@ -18,6 +18,7 @@ $(document).ready(function() {
   $('#friends').on('click', '#friendrequestButton', friendsAjaxCall);
   $('#friends').on('submit', '.unfriend', friendsEditAjaxCall);
   $('#friends').on('submit', '.add', friendsEditAjaxCall);
+  $('#friend_page_add').on('submit', '.add', friendsEditAjaxCall);
 
   $('#friends').on('submit', '#search', function(event){
     event.preventDefault();
@@ -95,7 +96,7 @@ $(document).ready(function() {
       url: location.pathname+'/addvalue',
       data: $target.serialize()
     }).done(function(response){
-      $target.siblings('#addedvalues').children('p').replaceWith(response);
+      $target.parent().siblings().children('p').replaceWith(response);
       $target.children('input[name=\'word\']').val("");
     });
   });
@@ -103,11 +104,13 @@ $(document).ready(function() {
   $('#morevalue_form').on('submit', function(event){
     event.preventDefault();
     $target = $(event.target)
+    $target.children('button').text('Loading...');
     $.ajax({
       type: 'GET',
       url: location.pathname+'/values'
     }).done(function(response){
-      $target.siblings('#possiblevalues').children('p').replaceWith(response);
+      $target.siblings('p').replaceWith(response);
+      $target.children('button').text('More Values');
     });
   });
 

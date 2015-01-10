@@ -6,19 +6,10 @@
 
   </div>
 
-  <div id='possiblevalues'>
-    <h3>click to add to <%= friend.first_name %>'s value list</h3>
-    <%= erb :'values/_possiblevalues', locals: {moreValues: moreValues}%>
-  </div>
-
-  <form id='morevalue_form' action='/friend/:id/values' method='GET' >
-    <button type="submit">More Values</button>
-  </form>
-
-  <form id='addvalue_form' action='/friend/:id/addvalue' method='POST'>
-    <input type='hidden' name='friend_id' value='<%= friend.id %>'>
-    <input type='text' name='word' placeholder='value'>
-    <button type="submit" >  add</button>
-  </form>
+  <% if values.length > 0 %>
+    <%= erb :'values/_iffriend', locals: {moreValues: moreValues, friend: friend}%>
+  <% else %>
+    <%= erb :'values/_ifnotfriend'%>
+  <% end %>
 
 </div>
