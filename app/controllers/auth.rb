@@ -11,7 +11,7 @@ post '/login' do
     redirect :'/', locals: {yourvalues: yourvalues}
   else
     session[:error] = "Invalid Login Information"
-    erb :'user/_logedout'
+    erb :'index'
   end
 end
 

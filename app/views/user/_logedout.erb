@@ -1,5 +1,6 @@
 <div class='userInfoCont'>
-  <h4 id='userMsg'>Login</h4>
+
+  <h4 id='userMsg'>Login</h4><h3><%= display_session_error %></h3>
   <form id='login' action='/login' method='POST' >
     <input type='text' name='user[email]' placeholder='email'>
     <input type='password' name='user[password]' placeholder='password'>
