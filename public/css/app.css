@@ -96,10 +96,11 @@ h3{
   font-family: 'Abel', sans-serif;
   font-size: 1.5em;
   margin: 20px;
+  color: #416C82;
 }
 
 #value_words a {
-  color: #416C82;
+
   text-decoration: none;
 }
 #value_words a:hover {

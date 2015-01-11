@@ -1,6 +1,7 @@
 <p id="value_words">
   <% values.each do |value| %>
-    <a href="/friend/:id/addvalue" value=<%= value.id %>><%= value.word %>, </a>
+  <%= value.word %>,
+    <!-- <a href="/friend/:id/addvalue" value=<%= value.id %>>, </a> -->
   <% end %>
 
 </p>
