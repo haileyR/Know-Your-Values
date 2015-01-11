@@ -1,0 +1,7 @@
+    <div id='friend_page_add'>
+      <form class='add' action='/friends' method='POST'>
+        <input type="hidden" name="_method" value="PUT">
+        <input id='friendID' type="hidden" value=<%= friend.id %>>
+        <button type="submit" >add <%= friend.first_name %> to give values</button>
+      </form>
+    </div>
